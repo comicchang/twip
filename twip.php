@@ -262,9 +262,10 @@ class twip{
             '/mentions.json' => '/mentions_timeline.json', //backward compat for API 1.0
             'i/search.json' => 'search.json', //fix search issue on twitter for iPhone
         );
-
-        $api = str_replace(array_keys($replacement), array_values($replacement), $api);
-
+        if ($version == "1.1")
+        {
+            $api = str_replace(array_keys($replacement), array_values($replacement), $api);
+        }
 
         if((strpos($api,'search.') === 0)){
             $this->request_uri = sprintf("%s%s", $this->parent_search_api, $api);
